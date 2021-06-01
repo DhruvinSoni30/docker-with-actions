@@ -17,7 +17,7 @@ jobs:
       name: Checkout the code
     - name: Docker Login
       run:
-        docker login -u $DOCKER_USERNAME -P $DOCKER_PASSWORD
+        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Build the docker image
       run: docker build . --file dockerfile --tage dhsoni/test:$(date +%s)
     - name: Docker push
