@@ -22,5 +22,5 @@ jobs:
         docker build . --file dockerfile --tag dhsoni:$(date +%s)
     - name: Pushing the image
       run:
-        docker push ${{secret.DOCKER_USERNAME}}/test-image
+        docker push ${{secrets.DOCKER_USERNAME}}/test-image
 
