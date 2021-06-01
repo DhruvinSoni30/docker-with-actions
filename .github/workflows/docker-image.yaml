@@ -1,4 +1,4 @@
-name: Build docker image & push it to docker hub
+name: Build docker image & push it to the docker hub
 
 on:
   push:
