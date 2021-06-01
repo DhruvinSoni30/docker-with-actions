@@ -1,0 +1,26 @@
+name: Build docker image & push it to docker hub
+
+on:
+  push:
+    branches: [main]
+  pull_request;
+    branches: [main]
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secret.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secret.DOCKER_PASSWORD}}
+      run: |
+        docker login -u DOCKER_USER -p DOCKER_PASSWORD
+    - name: Build the docker image
+      run: 
+        docker build . --file dockerfile --tag dhsoni:$(date +%s)
+    - name: Pushing the image
+      run:
+        docker push ${{secret.DOCKER_USERNAME}}/test-image
+
