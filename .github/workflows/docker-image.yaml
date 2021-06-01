@@ -3,6 +3,7 @@ name: Building docker image & push it to the docker hub
 env:
   DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+  IMAGE_REPOSITORY: dhruvin30/myimage
 on:
   push:
     branches: [main]
@@ -21,6 +22,6 @@ jobs:
     - name: Build the docker image
       run: docker build . --file dockerfile --tag dhsoni/test:$(date +%s)
     - name: Docker push
-      run: docker push ${{secrets.DOCKER_USERNAME}}/testing
+      run: docker push $IMAGE_REPOSITORY
 
 
